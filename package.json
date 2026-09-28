@@ -4,24 +4,6 @@
   "description": "Production-ready Discord AI bot with per-user personalities, slash commands, and conversation memory",
   "main": "src/index.js",
   "type": "module",
-  "scripts": {
-    "start": "node src/index.js",
-    "dev": "node --watch src/index.js",
-    "register-commands": "node src/utils/registerCommands.js"
-  },
-  "keywords": [
-    "discord",
-    "bot",
-    "ai",
-    "vercel-ai"
-  ],
-  "author": "MelikValid",
-  "license": "MIT",
-  "dependencies": {
-    "discord.js": "^14.14.1",
-    "dotenv": "^16.3.1",
-    "pg": "^8.11.3",
-    "ai": "^3.1.0"
-  },
-  "devDependencies": {}
+  "scripts": {"start":"node src/index.js","dev":"node --watch src/index.js","register-commands":"node src/utils/registerCommands.js"},
+  "dependencies": {"ai":"^3.1.0","@ai-sdk/openai":"^0.0.51","discord.js":"^14.14.1","dotenv":"^16.3.1","pg":"^8.11.3"}
 }
