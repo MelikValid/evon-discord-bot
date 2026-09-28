@@ -1,15 +1,27 @@
 {
-  "name": "evon-discord-ai-bot",
+  "name": "evon-discord-bot",
   "version": "1.0.0",
-  "private": true,
+  "description": "Production-ready Discord AI bot with per-user personalities, slash commands, and conversation memory",
+  "main": "src/index.js",
   "type": "module",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "register-commands": "node src/utils/registerCommands.js"
   },
+  "keywords": [
+    "discord",
+    "bot",
+    "ai",
+    "vercel-ai"
+  ],
+  "author": "MelikValid",
+  "license": "MIT",
   "dependencies": {
-    "better-sqlite3": "^11.7.0",
-    "discord.js": "^14.16.3",
-    "dotenv": "^16.4.7"
-  }
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1",
+    "pg": "^8.11.3",
+    "ai": "^3.1.0"
+  },
+  "devDependencies": {}
 }
