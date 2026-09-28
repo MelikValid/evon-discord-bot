@@ -1,2 +1,16 @@
-import { SlashCommandBuilder } from 'discord.js'; import { config } from '../config.js'; import { isOwner } from '../utils/permissions.js'; import { closeDatabase } from '../database/database.js';
-export const data = new SlashCommandBuilder().setName('shutdown').setDescription('Safely shut down Evon'); export async function execute(i){if(i.user.id!==config.ownerId)return i.reply({content:'Owner only.',ephemeral:true});await i.reply('Shutting down safely.');await closeDatabase();i.client.destroy();setTimeout(()=>process.exit(0),250);}
+import { SlashCommandBuilder } from 'discord.js'; 
+import { config } from '../config.js'; 
+import { isOwner } from '../utils/permissions.js'; 
+import { closeDatabase } from '../database/database.js';
+
+export const data = new SlashCommandBuilder()
+  .setName('shutdown')
+  .setDescription('Safely shut down Evon');
+
+export async function execute(i) {
+  if (i.user.id !== config.ownerId) return i.reply({ content: 'Owner only.', ephemeral: true });
+  await i.reply('Shutting down safely.');
+  await closeDatabase();
+  i.client.destroy();
+  setTimeout(() => process.exit(0), 250);
+}

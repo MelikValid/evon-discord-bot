@@ -1,2 +1,24 @@
-import 'dotenv/config'; import { REST, Routes } from 'discord.js'; import { config } from '../config.js'; import * as help from '../commands/help.js'; import * as ping from '../commands/ping.js'; import * as status from '../commands/status.js'; import * as personality from '../commands/personality.js'; import * as typing from '../commands/typing.js'; import * as pause from '../commands/pause.js'; import * as resume from '../commands/resume.js'; import * as shutdown from '../commands/shutdown.js'; import * as purge from '../commands/purge.js';
-const commands=[help,ping,status,personality,typing,pause,resume,shutdown,purge].map(c=>c.data.toJSON()); const rest=new REST({version:'10'}).setToken(config.token); await rest.put(Routes.applicationCommands(config.clientId),{body:commands}); console.log(`Registered ${commands.length} global commands.`);
+import 'dotenv/config'; 
+import { REST, Routes } from 'discord.js'; 
+import { config } from '../config.js'; 
+import * as help from '../commands/help.js'; 
+import * as ping from '../commands/ping.js'; 
+import * as status from '../commands/status.js'; 
+import * as personality from '../commands/personality.js'; 
+import * as typing from '../commands/typing.js'; 
+import * as pause from '../commands/pause.js'; 
+import * as resume from '../commands/resume.js'; 
+import * as shutdown from '../commands/shutdown.js'; 
+import * as purge from '../commands/purge.js';
+
+const commands = [help, ping, status, personality, typing, pause, resume, shutdown, purge].map(c => c.data.toJSON()); 
+const rest = new REST({ version: '10' }).setToken(config.token); 
+
+try {
+  console.log(`Registering ${commands.length} global commands...`);
+  await rest.put(Routes.applicationCommands(config.clientId), { body: commands }); 
+  console.log(`Successfully registered ${commands.length} global commands.`);
+} catch (error) {
+  console.error('Failed to register commands:', error);
+  process.exit(1);
+}
